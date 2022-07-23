@@ -59,11 +59,5 @@ namespace UmeedPieShop.Controllers
             customeClass.CategoryDescription = _categoryRepository.AllCategories.Where(c => c.CategoryId == 3).Select(c => c.Description).First();
             return View(customeClass);
         }
-
-
-
-        //action method for home page - listing all the pies of the week
-        //action method for details page 
-
     }
 }
