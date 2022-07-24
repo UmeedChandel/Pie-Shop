@@ -60,5 +60,17 @@ namespace UmeedPieShop.Controllers
             customeClass.CategoryDescription = category.Select(c => c.Description).First();
             return View(customeClass);
         }
+
+        public ViewResult FilterUp()
+        {
+            var pies = _pieRepository.AllPies.OrderBy(p=> p.Price);
+            return View(pies);
+        }
+
+        public ViewResult FilterDown()
+        {
+            var pies = _pieRepository.AllPies.OrderByDescending(p => p.Price);
+            return View(pies);
+        }
     }
 }
