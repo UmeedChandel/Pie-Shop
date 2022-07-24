@@ -33,30 +33,31 @@ namespace UmeedPieShop.Controllers
             return View(pie);
         }
 
-        public IActionResult Category1()
+        public ViewResult Category1()
         {
             CustomeClass customeClass = new CustomeClass();
             customeClass.Pies = _pieRepository.AllPies.Where(c => c.CategoryId == 1);
-            customeClass.CurrentCategory = _categoryRepository.AllCategories.Where(c => c.CategoryId == 1).Select(c => c.CategoryName).First();
-            customeClass.CategoryDescription = _categoryRepository.AllCategories.Where(c => c.CategoryId == 1).Select(c=> c.Description).First();
+            var category = _categoryRepository.AllCategories.Where(c => c.CategoryId == 1);
+            customeClass.CurrentCategory = category.Select(c => c.CategoryName).First();
+            customeClass.CategoryDescription = category.Select(c => c.Description).First();
             return View(customeClass);
         }
-
-        public IActionResult Category2()
+        public ViewResult Category2()
         {
             CustomeClass customeClass = new CustomeClass();
             customeClass.Pies = _pieRepository.AllPies.Where(c => c.CategoryId == 2);
-            customeClass.CurrentCategory = _categoryRepository.AllCategories.Where(c => c.CategoryId == 2).Select(c => c.CategoryName).First();
-            customeClass.CategoryDescription = _categoryRepository.AllCategories.Where(c => c.CategoryId == 2).Select(c => c.Description).First();
+            var category = _categoryRepository.AllCategories.Where(c => c.CategoryId == 2);
+            customeClass.CurrentCategory = category.Select(c => c.CategoryName).First();
+            customeClass.CategoryDescription = category.Select(c => c.Description).First();
             return View(customeClass);
         }
-
-        public IActionResult Category3()
+        public ViewResult Category3()
         {
             CustomeClass customeClass = new CustomeClass();
             customeClass.Pies = _pieRepository.AllPies.Where(c => c.CategoryId == 3);
-            customeClass.CurrentCategory = _categoryRepository.AllCategories.Where(c => c.CategoryId == 3).Select(c => c.CategoryName).First();
-            customeClass.CategoryDescription = _categoryRepository.AllCategories.Where(c => c.CategoryId == 3).Select(c => c.Description).First();
+            var category = _categoryRepository.AllCategories.Where(c => c.CategoryId == 3);
+            customeClass.CurrentCategory = category.Select(c => c.CategoryName).First();
+            customeClass.CategoryDescription = category.Select(c => c.Description).First();
             return View(customeClass);
         }
     }

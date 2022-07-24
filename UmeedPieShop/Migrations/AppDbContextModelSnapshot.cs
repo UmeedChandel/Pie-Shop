@@ -70,10 +70,6 @@ namespace UmeedPieShop.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PieId"), 1L, 1);
 
-                    b.Property<string>("AllergyInformation")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -116,7 +112,6 @@ namespace UmeedPieShop.Migrations
                         new
                         {
                             PieId = 1,
-                            AllergyInformation = "",
                             CategoryId = 1,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/applepiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/applepie.jpg",
@@ -130,7 +125,6 @@ namespace UmeedPieShop.Migrations
                         new
                         {
                             PieId = 2,
-                            AllergyInformation = "",
                             CategoryId = 2,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/blueberrycheesecakesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/blueberrycheesecake.jpg",
@@ -144,7 +138,6 @@ namespace UmeedPieShop.Migrations
                         new
                         {
                             PieId = 3,
-                            AllergyInformation = "",
                             CategoryId = 2,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cheesecakesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cheesecake.jpg",
@@ -158,7 +151,6 @@ namespace UmeedPieShop.Migrations
                         new
                         {
                             PieId = 4,
-                            AllergyInformation = "",
                             CategoryId = 1,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cherrypiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cherrypie.jpg",
@@ -172,7 +164,6 @@ namespace UmeedPieShop.Migrations
                         new
                         {
                             PieId = 5,
-                            AllergyInformation = "",
                             CategoryId = 3,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/christmasapplepiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/christmasapplepie.jpg",
@@ -186,7 +177,6 @@ namespace UmeedPieShop.Migrations
                         new
                         {
                             PieId = 6,
-                            AllergyInformation = "",
                             CategoryId = 3,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cranberrypiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cranberrypie.jpg",
@@ -200,7 +190,6 @@ namespace UmeedPieShop.Migrations
                         new
                         {
                             PieId = 7,
-                            AllergyInformation = "",
                             CategoryId = 1,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/peachpiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/peachpie.jpg",
@@ -214,7 +203,6 @@ namespace UmeedPieShop.Migrations
                         new
                         {
                             PieId = 8,
-                            AllergyInformation = "",
                             CategoryId = 3,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/pumpkinpiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/pumpkinpie.jpg",
@@ -228,7 +216,6 @@ namespace UmeedPieShop.Migrations
                         new
                         {
                             PieId = 9,
-                            AllergyInformation = "",
                             CategoryId = 1,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/rhubarbpiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/rhubarbpie.jpg",
@@ -242,7 +229,6 @@ namespace UmeedPieShop.Migrations
                         new
                         {
                             PieId = 10,
-                            AllergyInformation = "",
                             CategoryId = 1,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypiesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypie.jpg",
@@ -256,7 +242,6 @@ namespace UmeedPieShop.Migrations
                         new
                         {
                             PieId = 11,
-                            AllergyInformation = "",
                             CategoryId = 2,
                             ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrycheesecakesmall.jpg",
                             ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrycheesecake.jpg",

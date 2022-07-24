@@ -37,7 +37,7 @@ namespace UmeedPieShop.Models
                 InStock = true,
                 IsPieOfTheWeek = true,
                 ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/applepiesmall.jpg",
-                AllergyInformation = ""
+
             });
 
             modelBuilder.Entity<Pie>().HasData(new Pie
@@ -54,7 +54,7 @@ namespace UmeedPieShop.Models
                 IsPieOfTheWeek = false,
                 ImageThumbnailUrl =
                     "https://gillcleerenpluralsight.blob.core.windows.net/files/blueberrycheesecakesmall.jpg",
-                AllergyInformation = ""
+
             });
 
             modelBuilder.Entity<Pie>().HasData(new Pie
@@ -70,7 +70,7 @@ namespace UmeedPieShop.Models
                 InStock = true,
                 IsPieOfTheWeek = false,
                 ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cheesecakesmall.jpg",
-                AllergyInformation = ""
+
             });
 
             modelBuilder.Entity<Pie>().HasData(new Pie
@@ -86,7 +86,7 @@ namespace UmeedPieShop.Models
                 InStock = true,
                 IsPieOfTheWeek = false,
                 ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cherrypiesmall.jpg",
-                AllergyInformation = ""
+
             });
 
             modelBuilder.Entity<Pie>().HasData(new Pie
@@ -103,7 +103,7 @@ namespace UmeedPieShop.Models
                 IsPieOfTheWeek = false,
                 ImageThumbnailUrl =
                     "https://gillcleerenpluralsight.blob.core.windows.net/files/christmasapplepiesmall.jpg",
-                AllergyInformation = ""
+
             });
 
             modelBuilder.Entity<Pie>().HasData(new Pie
@@ -119,7 +119,7 @@ namespace UmeedPieShop.Models
                 InStock = true,
                 IsPieOfTheWeek = false,
                 ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/cranberrypiesmall.jpg",
-                AllergyInformation = ""
+
             });
 
             modelBuilder.Entity<Pie>().HasData(new Pie
@@ -135,7 +135,7 @@ namespace UmeedPieShop.Models
                 InStock = false,
                 IsPieOfTheWeek = false,
                 ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/peachpiesmall.jpg",
-                AllergyInformation = ""
+
             });
 
             modelBuilder.Entity<Pie>().HasData(new Pie
@@ -151,7 +151,7 @@ namespace UmeedPieShop.Models
                 InStock = true,
                 IsPieOfTheWeek = true,
                 ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/pumpkinpiesmall.jpg",
-                AllergyInformation = ""
+
             });
 
 
@@ -168,7 +168,7 @@ namespace UmeedPieShop.Models
                 InStock = true,
                 IsPieOfTheWeek = true,
                 ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/rhubarbpiesmall.jpg",
-                AllergyInformation = ""
+
             });
 
             modelBuilder.Entity<Pie>().HasData(new Pie
@@ -184,7 +184,7 @@ namespace UmeedPieShop.Models
                 InStock = true,
                 IsPieOfTheWeek = false,
                 ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrypiesmall.jpg",
-                AllergyInformation = ""
+
             });
 
             modelBuilder.Entity<Pie>().HasData(new Pie
@@ -201,7 +201,7 @@ namespace UmeedPieShop.Models
                 IsPieOfTheWeek = false,
                 ImageThumbnailUrl =
                     "https://gillcleerenpluralsight.blob.core.windows.net/files/strawberrycheesecakesmall.jpg",
-                AllergyInformation = ""
+
             });
         }
 
