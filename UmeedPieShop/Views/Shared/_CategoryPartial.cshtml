@@ -1,0 +1,31 @@
+﻿@using UmeedPieShop.ViewModel
+@model CustomeClass
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1 class="display-5">@Model.CurrentCategory</h1>
+<hr/>
+
+<p>@Model.CategoryDescription</p>
+<br>
+<div class="row">
+    @foreach (var pie in Model.Pies)
+    {
+        
+            <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="thumbnail spacing">
+                    <img src="@pie.ImageThumbnailUrl" class="sstyle">
+                    <div class="caption">
+                        <h3 class="pull-right">@pie.Price.ToString("c")</h3>
+                        <h3>
+                            <a asp-controller="Pie" asp-action="Detail" asp-route-id="@pie.PieId" >@pie.Name</a>
+                        </h3>
+                        <p>@pie.ShortDescription</p>
+                    </div>
+                </div>
+                <br>
+            </div>
+    }
+</div>

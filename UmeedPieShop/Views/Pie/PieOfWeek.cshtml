@@ -1,29 +1,6 @@
-﻿@model IEnumerable<UmeedPieShop.Models.Pie>
-@{
-    ViewData["Title"] = "PieOfWeek";
-}
-
+﻿
 <div class="text-center">
     <h1 class="display-3" >Pie Of The Week</h1>
 </div>
 
-<hr />  
-
-<div class="row">
-    @foreach (var pie in Model)
-    {
-            <div class="col-sm-4 col-lg-4 col-md-4">
-                <div class="thumbnail">
-                    <img src="@pie.ImageThumbnailUrl" alt="">
-                    <div class="caption">
-                        <h3 class="pull-right">@pie.Price.ToString("c")</h3>
-                        <h3>
-                            <a asp-controller="Pie" asp-action="Detail" asp-route-id="@pie.PieId" >@pie.Name</a>
-                        </h3>
-                        <h5> Catagory: @pie.Category.CategoryName</h5>
-                        <p>@pie.ShortDescription</p>
-                    </div>
-                </div>
-            </div>
-    }
-</div>
+<partial name="_ListPartial"></partial>
