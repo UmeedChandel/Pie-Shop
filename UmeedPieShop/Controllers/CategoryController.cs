@@ -7,11 +7,9 @@ namespace UmeedPieShop.Controllers
     public class CategoryController : Controller
     {
         private readonly IPieRepository _pieRepository;
-        private readonly ICategoryRepository _categoryRepository;
-        public CategoryController(IPieRepository pieRepository, ICategoryRepository categoryRepository)
+        public CategoryController(IPieRepository pieRepository)
         {
             _pieRepository = pieRepository;
-            _categoryRepository = categoryRepository;
         }
 
         public ViewResult Category1()
