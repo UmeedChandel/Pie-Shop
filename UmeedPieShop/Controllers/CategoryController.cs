@@ -18,27 +18,33 @@ namespace UmeedPieShop.Controllers
         {
             CustomeClass customeClass = new CustomeClass();
             customeClass.Pies = _pieRepository.AllPies.Where(c => c.CategoryId == 1);
-            var category = _categoryRepository.AllCategories.Where(c => c.CategoryId == 1);
-            customeClass.CurrentCategory = category.Select(c => c.CategoryName).First();
-            customeClass.CategoryDescription = category.Select(c => c.Description).First();
+            customeClass.CurrentCategory = customeClass.Pies.First().Category.CategoryName;
+            customeClass.CategoryDescription = customeClass.Pies.First().Category.Description; 
             return View(customeClass);
         }
         public ViewResult Category2()
         {
             CustomeClass customeClass = new CustomeClass();
             customeClass.Pies = _pieRepository.AllPies.Where(c => c.CategoryId == 2);
-            var category = _categoryRepository.AllCategories.Where(c => c.CategoryId == 2);
-            customeClass.CurrentCategory = category.Select(c => c.CategoryName).First();
-            customeClass.CategoryDescription = category.Select(c => c.Description).First();
+            customeClass.CurrentCategory = customeClass.Pies.First().Category.CategoryName;
+            customeClass.CategoryDescription = customeClass.Pies.First().Category.Description;
             return View(customeClass);
         }
         public ViewResult Category3()
         {
             CustomeClass customeClass = new CustomeClass();
             customeClass.Pies = _pieRepository.AllPies.Where(c => c.CategoryId == 3);
-            var category = _categoryRepository.AllCategories.Where(c => c.CategoryId == 3);
-            customeClass.CurrentCategory = category.Select(c => c.CategoryName).First();
-            customeClass.CategoryDescription = category.Select(c => c.Description).First();
+            customeClass.CurrentCategory = customeClass.Pies.First().Category.CategoryName;
+            customeClass.CategoryDescription = customeClass.Pies.First().Category.Description;
+            return View(customeClass);
+        }
+
+        public ViewResult Category(int id)
+        {
+            CustomeClass customeClass = new CustomeClass();
+            customeClass.Pies = _pieRepository.AllPies.Where(c => c.CategoryId == id);
+            customeClass.CurrentCategory = customeClass.Pies.First().Category.CategoryName;
+            customeClass.CategoryDescription = customeClass.Pies.First().Category.Description;
             return View(customeClass);
         }
     }

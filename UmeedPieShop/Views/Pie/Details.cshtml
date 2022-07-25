@@ -11,11 +11,19 @@
             <p class="display-5">@Model.Name</p>
         </h3>
         <p>@Model.LongDescription</p> 
+
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Category" asp-action="Category" asp-route-id="@Model.CategoryId">View more in this catagory.</a>
+            </li>
+        </ul>
+        <br>
         <div class="addToCart">
             <p class="button">
                 <a class="btn buttonn btn-danger" asp-controller="Pie" asp-action="Details" asp-route-pieId="@Model.PieId">Add to cart</a>
                 <a class="btn buttonn btn-danger" asp-controller="Pie" asp-action="List">Back to List</a>
             </p>
+            
         </div>
     </div>
 </div>
