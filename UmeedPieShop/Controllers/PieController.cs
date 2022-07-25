@@ -25,9 +25,7 @@ namespace UmeedPieShop.Controllers
             return View(piesOfWeek);
         }
 
-        [HttpGet]
-        [Route("Pie/Detail/{id:int}")]
-        public IActionResult Detail(int id)
+        public IActionResult Details(int id)
         {
             var pie = _pieRepository.GetPieById(id);
             return View(pie);
@@ -80,7 +78,7 @@ namespace UmeedPieShop.Controllers
 
         public ViewResult FilterStock()
         {
-            var pies = _pieRepository.AllPies.OrderByDescending(p => p.InStock);
+            var pies = _pieRepository.AllPies.Where(p => p.InStock);
             return View(pies);
         }
     }

@@ -4,10 +4,7 @@ namespace UmeedPieShop.Models
 {
     public class PieRepository : IPieRepository
     {
-        //private readonly ICategoryRepository _categoryRepository = new CategoryRepository();
-
         private readonly AppDbContext _appDbContext;
-
         public PieRepository(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 namespace UmeedPieShop.Models
 {
-    public class Pie // <<== Child
+    public class Pie
     {
         public int PieId { get; set; }
 
@@ -22,7 +22,7 @@ namespace UmeedPieShop.Models
 
         [Display(Name = "In Stock")]
         public bool InStock { get; set; }
-        public int CategoryId { get; set; } // <<== Parent ID
+        public int CategoryId { get; set; }
         public Category Category { get; set; }
 
     }
