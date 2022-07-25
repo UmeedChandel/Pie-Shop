@@ -43,11 +43,13 @@
 
                 <div class="dropdown space">
                     <li class="btncolor text-light btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                      Filter Price
+                      Filter 
                     </li>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <li><a class="dropdown-item" asp-controller="Pie" asp-action="FilterUp" >Low to High</a></li>
-                      <li><a class="dropdown-item" asp-controller="Pie" asp-action="FilterDown" >High to Low</a></li>
+                      <li><a class="dropdown-item" asp-controller="Pie" asp-action="FilterUp" >Low - High</a></li>
+                      <li><a class="dropdown-item" asp-controller="Pie" asp-action="FilterDown" >High - Low</a></li>
+                      <li><a class="dropdown-item" asp-controller="Pie" asp-action="FilterName" >By Name</a></li>
+                      <li><a class="dropdown-item" asp-controller="Pie" asp-action="FilterStock" >In Stock</a></li>
                     </ul>
                 </div>
 

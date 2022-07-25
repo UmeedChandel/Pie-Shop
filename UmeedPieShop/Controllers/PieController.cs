@@ -72,5 +72,16 @@ namespace UmeedPieShop.Controllers
             var pies = _pieRepository.AllPies.OrderByDescending(p => p.Price);
             return View(pies);
         }
+        public ViewResult FilterName()
+        {
+            var pies = _pieRepository.AllPies.OrderBy(p => p.Name.ToUpper());
+            return View(pies);
+        }
+
+        public ViewResult FilterStock()
+        {
+            var pies = _pieRepository.AllPies.OrderByDescending(p => p.InStock);
+            return View(pies);
+        }
     }
 }
