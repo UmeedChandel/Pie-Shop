@@ -37,7 +37,10 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                <img src="@item.ImageThumbnailUrl" class="sstyle" width=50%>
+                <a asp-controller="Pie" asp-action="Details" asp-route-id="@item.PieId" >
+                    <img src="@item.ImageThumbnailUrl" class="sstyle" width=50%>
+                </a>
+                
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsPieOfTheWeek)

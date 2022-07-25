@@ -10,13 +10,10 @@
         <h3>
             <p class="display-5">@Model.Name</p>
         </h3>
-        <p>@Model.LongDescription</p> 
+        <p>@Model.LongDescription</p>
+        <a asp-controller="Category" asp-action="Category" asp-route-id="@Model.CategoryId">View more in this catagory.</a>
 
-        <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="Category" asp-action="Category" asp-route-id="@Model.CategoryId">View more in this catagory.</a>
-            </li>
-        </ul>
+        <br>
         <br>
         <div class="addToCart">
             <p class="button">
