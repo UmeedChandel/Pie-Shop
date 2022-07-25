@@ -34,7 +34,10 @@ body {
 }
 
 .space {
-    padding: 0px 60px 0px 0px;
+    padding: 0px 40px 0px 0px;
+}
+.space1 {
+    padding: 0px 70px 0px 0px;
 }
 
 .sstyle{
