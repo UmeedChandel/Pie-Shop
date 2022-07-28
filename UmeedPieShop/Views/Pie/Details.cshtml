@@ -11,14 +11,14 @@
             <p class="display-5">@Model.Name</p>
         </h3>
         <p>@Model.LongDescription</p>
-        <a asp-controller="Category" asp-action="Category" asp-route-id="@Model.CategoryId">View more in this catagory.</a>
+        <a asp-controller="Pie" asp-action="List" asp-route-id="@Model.CategoryId">View more in this catagory.</a>
 
         <br>
         <br>
         <div class="addToCart">
             <p class="button">
                 <a class="btn buttonn btn-danger" asp-controller="Pie" asp-action="Details" asp-route-pieId="@Model.PieId">Add to cart</a>
-                <a class="btn buttonn btn-danger" asp-controller="Pie" asp-action="List">Back to List</a>
+                <a class="btn buttonn btn-danger" asp-controller="Pie" asp-action="List" asp-route-id="0">Back to List</a>
             </p>
             
         </div>

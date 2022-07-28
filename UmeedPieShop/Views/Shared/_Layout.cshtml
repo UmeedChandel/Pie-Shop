@@ -25,11 +25,16 @@
                             <h2><a class="nav-link text-light" asp-controller="Pie" asp-action="PieOfWeek">Home</a></h2>
                         </li>
                         <li class="nav-item">
-                            <h2><a class="nav-link text-light" asp-controller="Pie" asp-action="List">Pies</a></h2>
+                            <h2><a class="nav-link text-light" asp-controller="Pie" asp-action="List" asp-route-id="0">Pies</a></h2>
                         </li>
                         <li class="nav-item">
                             <h2><a class="nav-link text-light" asp-controller="Pie" asp-action="ListMini">Short</a></h2>
                         </li>
+                        @*<li class="nav-item">
+                            <h2><a class="nav-link text-light" asp-controller="" asp-action="">
+                                @await Component.InvokeAsync("ListMenu")
+                            </a></h2>
+                        </li>*@
                     </ul>
                 </div>
 

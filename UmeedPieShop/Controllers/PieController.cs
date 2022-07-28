@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using UmeedPieShop.Models;
+using UmeedPieShop.ViewModel;
 
 namespace UmeedPieShop.Controllers
 {
@@ -14,15 +15,37 @@ namespace UmeedPieShop.Controllers
             _mapper = mapper;
         }
 
-        public IActionResult List()
+        public IActionResult List(int id)
         {
-            var pies = _pieRepository.AllPies;
-            return View(pies);
+            IEnumerable<Pie> pies;
+            if (id > 0)
+            {
+                pies = _pieRepository.AllPies.Where(pie => pie.CategoryId == id);
+            }
+            else
+            {
+                pies = _pieRepository.AllPies;
+            }
+
+            CustomeClass customeClass = new CustomeClass();
+            customeClass.Pies = pies;
+
+            if (id > 0)
+            {
+                customeClass.CurrentCategory = customeClass.Pies.First().Category.CategoryName;
+                customeClass.CategoryDescription = customeClass.Pies.First().Category.Description;
+            }
+            else
+            {
+                customeClass.CurrentCategory = "List Of Pies";
+                customeClass.CategoryDescription = "";
+            }
+
+            return View(customeClass);
         }
 
         public IActionResult ListMini()
         {
-
             var pies = _pieRepository.AllPies;
             var piesmini = _mapper.Map<IEnumerable<PieMini>>(pies);
             return View(piesmini);

@@ -3,6 +3,7 @@ using UmeedPieShop.Models;
 
 namespace UmeedPieShop.Components
 {
+    // component -> repository -> appdbcontext -> EFcore -> database
     public class CategoryMenu: ViewComponent // <<=== Equivalent to Controller
     {
         private readonly ICategoryRepository categoryRepository;

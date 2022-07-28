@@ -7,13 +7,13 @@
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
         @foreach (var category in Model){
             <li>
-                <a class="dropdown-item" asp-controller="Category" asp-action="Category" asp-route-id="@category.CategoryId" >
+                <a class="dropdown-item" asp-controller="Pie" asp-action="List" asp-route-id="@category.CategoryId" >
                     @category.CategoryName
                 </a>
             </li>
         }
         <li>
-            <a class="dropdown-item" asp-controller="Category" asp-action="Category" asp-route-id="0">
+            <a class="dropdown-item" asp-controller="Pie" asp-action="List" asp-route-id="0">
                     View All Pies
                 </a>
         </li>
