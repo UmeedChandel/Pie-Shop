@@ -1,0 +1,41 @@
+﻿@model IEnumerable<UmeedPieShop.Models.PieMini>
+<br>
+
+<table class="table table-striped table-dark">
+          <thead>
+            <tr>
+              <th class="text-center" scope="col"> @Html.DisplayNameFor(model => model.PieId) </th>
+              <th scope="col"> @Html.DisplayNameFor(model => model.Name) </th>
+              <th class="text-center" scope="col"> @Html.DisplayNameFor(model => model.Price) </th>
+	          <th scope="col"> @Html.DisplayNameFor(model => model.ShortDescription) </th>
+	          <th scope="col"> Purchase </th>
+            </tr>
+          </thead>
+          <tbody>
+              @foreach (var item in Model){
+                <tr>
+                  <td class="text-center"> 
+                      @Html.DisplayFor(modelItem => item.PieId)
+                  </td>
+	              <td> 
+                      <a class="text-light" asp-controller="Pie" asp-action="Details" asp-route-id="@item.PieId" >@item.Name</a>
+                  </td>
+                  <td class="text-center"> 
+                      @Html.DisplayFor(modelItem => item.Price)
+                  </td>
+	              <td> 
+                      @Html.DisplayFor(modelItem => item.ShortDescription)
+                  </td>
+	              <td> 
+                      <p class="button">
+                        <a class="btn buttonn btn-danger">Add to cart</a>
+                      </p>  
+                  </td>
+                </tr>
+}
+          </tbody>
+ </table>
+
+<div class="button">
+    <a class="btn btn-primary" asp-controller="Pie" asp-action="ListMini">Top</a>
+</div>
