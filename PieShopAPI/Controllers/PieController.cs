@@ -19,8 +19,8 @@ namespace PieShopAPI.Controllers
         }
 
         [HttpGet]
-        [Route("List")]
-        public IActionResult List()
+        [Route("AllPiesList")]
+        public IActionResult AllPiesList()
         {
             try
             {
@@ -81,9 +81,9 @@ namespace PieShopAPI.Controllers
             {
                 var pies = _pieRepository.AllPies.Where(p=> p.CategoryId== categoryid);
 
-                if (Category == null)
+                if (pies == null)
                 {
-                    return NotFound("No such Category exist");
+                    return NotFound("No such Pie in category exist");
                 }
 
                 return Ok(pies);
@@ -95,28 +95,7 @@ namespace PieShopAPI.Controllers
 
         }
 
-        [HttpGet]
-        [Route("GetCategory")]
-        public ActionResult<Category> Category(int categoryid = 1)
-        {
-            try
-            {
-                var Category = _CategoryRepository.AllCategories.FirstOrDefault(c => c.CategoryId == categoryid);
-
-                if (Category == null)
-                {
-                    return NotFound("No such Category exist");
-                }
-
-                return Ok(Category);
-            }
-            catch (Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Server Error");
-            }
-
-        }
-
+        
         [HttpGet]
         [Route("AllCategories")]
         public IActionResult AllCategories()

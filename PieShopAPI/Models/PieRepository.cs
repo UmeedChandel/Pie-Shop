@@ -24,5 +24,27 @@ namespace PieShopAPI.Models
         {
             return this.AllPies.FirstOrDefault(pie => pie.PieId == pieId);
         }
+
+        // CRUD Operations
+
+        public Pie InsertPie(Pie pies)
+        {
+            var entry = _appDbContext.Pies.Add(pies);
+            _appDbContext.SaveChanges();
+            return entry.Entity;
+        }
+        public Pie UpdatePie(Pie pies)
+        {
+            var entry = _appDbContext.Pies.Update(pies);
+            _appDbContext.SaveChanges();
+            return entry.Entity;
+        }
+        public Pie DeletePie(int pieId)
+        {
+            var pie = AllPies.FirstOrDefault(a => a.PieId == pieId);
+            var entry = _appDbContext.Pies.Remove(pie);
+            _appDbContext.SaveChanges();
+            return entry.Entity;
+        }
     }
 }
