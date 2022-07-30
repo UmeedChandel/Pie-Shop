@@ -3,17 +3,26 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UmeedPieShop.Models;
 using UmeedPieShop.ViewModel;
+using Newtonsoft.Json;
 
 namespace UmeedPieShop.Controllers
 {
     public class PieController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly IPieRepository _pieRepository;
-        public PieController(IPieRepository pieRepository, IMapper mapper)
+        private readonly IConfiguration _configuration;
+        string baseAddress;
+        public PieController(IPieRepository pieRepository, IMapper mapper, IConfiguration configuration)
         {
-            _pieRepository = pieRepository;
             _mapper = mapper;
+            _configuration = configuration;
+            baseAddress = configuration.GetValue<string>("BaseAddress");
+        }
+
+        private IEnumerable<Pie> GetAllPies()
+        {
+            var pies = StaticApiData.GetApiData(baseAddress + "Pie/AllPiesList");
+            return pies.Result;
         }
 
         public IActionResult List(int id)
@@ -22,13 +31,13 @@ namespace UmeedPieShop.Controllers
             CustomeClass customeClass = new CustomeClass();
             if (id > 0)
             {
-                pies = _pieRepository.AllPies.Where(pie => pie.CategoryId == id);
-                customeClass.CurrentCategory = pies.First().Category.CategoryName;
-                customeClass.CategoryDescription = pies.First().Category.Description;
+                pies = GetAllPies().Where(pie => pie.CategoryId == id);
+                customeClass.CurrentCategory = "Category";
+                customeClass.CategoryDescription = "";
             }
             else
             {
-                pies = _pieRepository.AllPies;
+                pies = GetAllPies();
                 customeClass.CurrentCategory = "List Of Pies";
                 customeClass.CategoryDescription = "";
             }
@@ -40,22 +49,82 @@ namespace UmeedPieShop.Controllers
         [Authorize]
         public IActionResult ListMini()
         {
-            var pies = _pieRepository.AllPies;
+            var pies = GetAllPies();
             var piesmini = _mapper.Map<IEnumerable<PieMini>>(pies);
             return View(piesmini);
         }
 
         public IActionResult PieOfWeek()
         {
-            var piesOfWeek = _pieRepository.PiesOfTheWeek;
-            return View(piesOfWeek);
+            var piesOfWeek = StaticApiData.GetApiData(baseAddress + "Pie/PieOfWeek");
+            return View(piesOfWeek.Result);
+        }
+
+        
+        public IActionResult Details(int id)
+        {
+            var pie = GetAllPies().FirstOrDefault(p => p.PieId == id);
+            return View(pie);
+        }
+
+
+        // CRUD Operations
+
+        [Authorize]
+        public ViewResult Edit(int id)
+        {
+            var pie = GetAllPies().FirstOrDefault(p => p.PieId == id);
+            return View(pie);
+        }
+
+        public async Task<IActionResult> Update(Pie pie) //PutAsync
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.PutAsJsonAsync(baseAddress + "Crud/Update", pie))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                }
+            }
+            return RedirectToAction("List");
         }
 
         [Authorize]
-        public IActionResult Details(int id)
+        public ViewResult Create()
         {
-            var pie = _pieRepository.GetPieById(id);
+            return View();
+        }
+
+        public async Task<IActionResult> Insert(Pie pie) //PostAsync
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.PostAsJsonAsync(baseAddress + "Crud/Insert", pie))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                }
+            }
+            return RedirectToAction("List");
+        }
+
+        [Authorize]
+        public ViewResult DeletePie(int id)
+        {
+            var pie = GetAllPies().FirstOrDefault(p => p.PieId == id);
             return View(pie);
-        }     
+        }
+
+        public async Task<IActionResult> Delete(int PieId)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.DeleteAsync(baseAddress + "Crud/Delete?PieId=" + PieId))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                }
+            }
+
+            return RedirectToAction("List");
+        }
     }
 }

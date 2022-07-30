@@ -6,38 +6,41 @@ namespace UmeedPieShop.Controllers
 {
     public class FilterController : Controller
     {
-        private readonly IPieRepository _pieRepository;
-        public FilterController(IPieRepository pieRepository)
+        private readonly IConfiguration _configuration;
+        string baseAddress;
+        public FilterController(IConfiguration configuration)
         {
-            _pieRepository = pieRepository;
+            _configuration = configuration;
+            baseAddress = configuration.GetValue<string>("BaseAddress");
         }
+
 
         [Authorize]
         public ViewResult FilterUp()
         {
-            var pies = _pieRepository.AllPies.OrderBy(p => p.Price);
-            return View(pies);
+            var pies = StaticApiData.GetApiData(baseAddress + "Filter/PriceAsc");
+            return View(pies.Result);
         }
 
         [Authorize]
         public ViewResult FilterDown()
         {
-            var pies = _pieRepository.AllPies.OrderByDescending(p => p.Price);
-            return View(pies);
+            var pies = StaticApiData.GetApiData(baseAddress + "Filter/PriceDesc");
+            return View(pies.Result);
         }
 
         [Authorize]
         public ViewResult FilterName()
         {
-            var pies = _pieRepository.AllPies.OrderBy(p => p.Name.ToUpper());
-            return View(pies);
+            var pies = StaticApiData.GetApiData(baseAddress + "Filter/ByName");
+            return View(pies.Result);
         }
 
         [Authorize]
         public ViewResult FilterStock()
         {
-            var pies = _pieRepository.AllPies.Where(p => p.InStock);
-            return View(pies);
+            var pies = StaticApiData.GetApiData(baseAddress + "Filter/ByStock");
+            return View(pies.Result);
         }
     }
 }
