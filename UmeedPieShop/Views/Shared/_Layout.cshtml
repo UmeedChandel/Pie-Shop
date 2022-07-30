@@ -31,16 +31,20 @@
                             <h2><a class="nav-link text-light" asp-controller="Pie" asp-action="ListMini">Short</a></h2>
                         </li>
                         @*<li class="nav-item">
+                            <h2><a class="nav-link text-light" asp-controller="Pie" asp-action="ListMini"> <partial name = "_LoginPartial"/> </a></h2>
+                        </li>*@
+                        @*<li class="nav-item">
                             <h2><a class="nav-link text-light" asp-controller="" asp-action="">
                                 @await Component.InvokeAsync("ListMenu")
                             </a></h2>
                         </li>*@
                     </ul>
                 </div>
+                
 
                 @await Component.InvokeAsync("CategoryMenu")
 
-                <div class="dropdown space1">
+                <div class="dropdown space">
                     <li class="btncolor text-light btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                       Filter 
                     </li>
@@ -51,6 +55,11 @@
                       <li><a class="dropdown-item" asp-controller="Filter" asp-action="FilterStock" >In Stock</a></li>
                     </ul>
                 </div>
+
+                <div>
+                    <partial name = "_LoginPartial"/>
+                </div>
+                
 
             </div>
         </nav>

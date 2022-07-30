@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using UmeedPieShop.Models;
@@ -11,10 +12,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 });
 
+//Identity
+builder.Services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<AppDbContext>(); 
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// Adding Services 
+// Adding Services Dependencies injection
+builder.Services.AddRazorPages();
 builder.Services.AddScoped<IPieRepository, PieRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
@@ -35,10 +40,13 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Pie}/{action=PieOfWeek}/{id?}");
+
+app.MapRazorPages();
 
 app.Run();

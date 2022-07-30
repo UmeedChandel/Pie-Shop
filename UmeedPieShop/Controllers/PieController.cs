@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UmeedPieShop.Models;
 using UmeedPieShop.ViewModel;
@@ -36,6 +37,7 @@ namespace UmeedPieShop.Controllers
             return View(customeClass);
         }
 
+        [Authorize]
         public IActionResult ListMini()
         {
             var pies = _pieRepository.AllPies;
@@ -49,6 +51,7 @@ namespace UmeedPieShop.Controllers
             return View(piesOfWeek);
         }
 
+        [Authorize]
         public IActionResult Details(int id)
         {
             var pie = _pieRepository.GetPieById(id);
