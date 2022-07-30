@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using PieShopAPI.Models;
 
 namespace PieShopAPI.Controllers
@@ -7,12 +8,14 @@ namespace PieShopAPI.Controllers
     [Route("api/Pie")]
     public class PieController : ControllerBase
     {
+        private readonly IMapper mapper;
         private readonly IPieRepository _pieRepository;
         private readonly ICategoryRepository _CategoryRepository;
-        public PieController(IPieRepository pieRepository, ICategoryRepository categoryRepository)
+        public PieController(IPieRepository pieRepository, ICategoryRepository categoryRepository, IMapper mapper)
         {
             _pieRepository = pieRepository;
             _CategoryRepository = categoryRepository;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -21,7 +24,9 @@ namespace PieShopAPI.Controllers
         {
             try
             {
-                return Ok(_pieRepository.AllPies);
+                var pies = _pieRepository.AllPies;
+                var ListMini = mapper.Map<ListMini[]>(pies);
+                return Ok(ListMini);
             }
             catch (Exception)
             {
@@ -35,7 +40,9 @@ namespace PieShopAPI.Controllers
         {
             try
             {
-                return Ok(_pieRepository.PiesOfTheWeek);
+                var pies = _pieRepository.PiesOfTheWeek;
+                var ListMini = mapper.Map<ListMini[]>(pies);
+                return Ok(ListMini);
             }
             catch (Exception)
             {
@@ -54,7 +61,8 @@ namespace PieShopAPI.Controllers
                 {
                     return NotFound("No such Pie exist");
                 }
-                return Ok(pie);
+                var DetailMini = mapper.Map<DetailMini>(pie);
+                return Ok(DetailMini);
             }
             catch (Exception)
             {

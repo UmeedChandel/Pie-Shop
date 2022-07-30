@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using PieShopAPI.Models;
 
 namespace PieShopAPI.Controllers
@@ -7,10 +8,12 @@ namespace PieShopAPI.Controllers
     [Route("api/Filter")]
     public class FilterController : ControllerBase
     {
+        private readonly IMapper _mapper;
         private readonly IPieRepository _pieRepository;
-        public FilterController(IPieRepository pieRepository)
+        public FilterController(IPieRepository pieRepository, IMapper mapper)
         {
             _pieRepository = pieRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -20,6 +23,8 @@ namespace PieShopAPI.Controllers
             try
             {
                 var pies = _pieRepository.AllPies.OrderBy(p => p.Price);
+                /*var FilterMini = _mapper.Map<FilterMini[]>(pies);
+                return Ok(FilterMini);*/
                 return Ok(pies);
             }
             catch (Exception)
@@ -36,6 +41,8 @@ namespace PieShopAPI.Controllers
             try
             {
                 var pies = _pieRepository.AllPies.OrderByDescending(p => p.Price);
+                /*var FilterMini = _mapper.Map<FilterMini[]>(pies);
+                return Ok(FilterMini);*/
                 return Ok(pies);
             }
             catch (Exception)
@@ -52,6 +59,8 @@ namespace PieShopAPI.Controllers
             try
             {
                 var pies = _pieRepository.AllPies.OrderBy(p => p.Name.ToUpper());
+                /*var FilterMini = _mapper.Map<FilterMini[]>(pies);
+                return Ok(FilterMini);*/
                 return Ok(pies);
             }
             catch (Exception)
@@ -68,7 +77,8 @@ namespace PieShopAPI.Controllers
             try
             {
                 var pies = _pieRepository.AllPies.Where(p => p.InStock);
-                return Ok(pies);
+                var FilterMini = _mapper.Map<FilterMini[]>(pies);
+                return Ok(FilterMini);
             }
             catch (Exception)
             {
