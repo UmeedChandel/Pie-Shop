@@ -4,7 +4,7 @@
 
 namespace PieShopAPI.Migrations
 {
-    public partial class IntialMigration : Migration
+    public partial class seed : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

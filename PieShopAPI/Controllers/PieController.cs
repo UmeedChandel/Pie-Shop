@@ -10,11 +10,9 @@ namespace PieShopAPI.Controllers
     {
         private readonly IMapper mapper;
         private readonly IPieRepository _pieRepository;
-        private readonly ICategoryRepository _CategoryRepository;
         public PieController(IPieRepository pieRepository, ICategoryRepository categoryRepository, IMapper mapper)
         {
             _pieRepository = pieRepository;
-            _CategoryRepository = categoryRepository;
             this.mapper = mapper;
         }
 
@@ -50,8 +48,9 @@ namespace PieShopAPI.Controllers
 
         }
 
-        [HttpGet("{id}", Name = "Details")]
-        public IActionResult Details(int id)
+        [HttpGet]
+        [Route("Details")]
+        public IActionResult Details(int id=1)
         {
             try
             {
@@ -84,22 +83,6 @@ namespace PieShopAPI.Controllers
                 }
 
                 return Ok(pies);
-            }
-            catch (Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Server Error");
-            }
-
-        }
-
-        
-        [HttpGet]
-        [Route("AllCategories")]
-        public IActionResult AllCategories()
-        {
-            try
-            {
-                return Ok(_CategoryRepository.AllCategories);
             }
             catch (Exception)
             {

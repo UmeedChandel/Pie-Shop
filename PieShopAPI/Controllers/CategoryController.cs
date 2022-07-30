@@ -35,6 +35,21 @@ namespace PieShopAPI.Controllers
 
         }
 
+        [HttpGet]
+        [Route("AllCategories")]
+        public IActionResult AllCategories()
+        {
+            try
+            {
+                return Ok(_categoryRepository.AllCategories);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Server Error");
+            }
+
+        }
+
         [HttpPost]
         [Route("Insert")]
         public IActionResult Insert(Category category)

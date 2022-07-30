@@ -11,8 +11,8 @@ using PieShopAPI.Models;
 namespace PieShopAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220729110458_IntialMigration")]
-    partial class IntialMigration
+    [Migration("20220730214259_seed")]
+    partial class seed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
