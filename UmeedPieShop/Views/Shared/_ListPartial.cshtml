@@ -13,7 +13,6 @@
 <div class="row">
     @foreach (var pie in Model.Pies)
     {
-        
             <div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="thumbnail spacing">
                     <a asp-controller="Pie" asp-action="Details" asp-route-id="@pie.PieId">
@@ -31,3 +30,11 @@
             </div>
     }
 </div>
+
+
+@if(Model.CurrentCategory == "List Of Pies")
+{
+    <div class="button">
+        <a class="btn btn-primary" asp-controller="Pie" asp-action="List" asp-route-id="0">Top</a>
+    </div>
+}

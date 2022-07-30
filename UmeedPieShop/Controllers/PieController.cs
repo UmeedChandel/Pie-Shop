@@ -18,29 +18,21 @@ namespace UmeedPieShop.Controllers
         public IActionResult List(int id)
         {
             IEnumerable<Pie> pies;
+            CustomeClass customeClass = new CustomeClass();
             if (id > 0)
             {
                 pies = _pieRepository.AllPies.Where(pie => pie.CategoryId == id);
+                customeClass.CurrentCategory = pies.First().Category.CategoryName;
+                customeClass.CategoryDescription = pies.First().Category.Description;
             }
             else
             {
                 pies = _pieRepository.AllPies;
-            }
-
-            CustomeClass customeClass = new CustomeClass();
-            customeClass.Pies = pies;
-
-            if (id > 0)
-            {
-                customeClass.CurrentCategory = customeClass.Pies.First().Category.CategoryName;
-                customeClass.CategoryDescription = customeClass.Pies.First().Category.Description;
-            }
-            else
-            {
                 customeClass.CurrentCategory = "List Of Pies";
                 customeClass.CategoryDescription = "";
             }
 
+            customeClass.Pies = pies;
             return View(customeClass);
         }
 
