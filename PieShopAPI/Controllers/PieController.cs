@@ -25,8 +25,7 @@ namespace PieShopAPI.Controllers
             try
             {
                 var pies = _pieRepository.AllPies;
-                var ListMini = mapper.Map<ListMini[]>(pies);
-                return Ok(ListMini);
+                return Ok(pies);
             }
             catch (Exception)
             {
@@ -70,8 +69,6 @@ namespace PieShopAPI.Controllers
             }
 
         }
-
-
 
         [HttpGet]
         [Route("GetPiesByCategoryID")]
