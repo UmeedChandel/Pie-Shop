@@ -8,8 +8,12 @@
 <h1 class="display-5">@Model.CurrentCategory</h1>
 <hr/>
 
-<p>@Model.CategoryDescription</p>
+<p>
+    @Model.CategoryDescription
+    Create New Pie(s): <a asp-controller="Pie" asp-action="Create">click here</a> 
+</p>
 <br>
+
 <div class="row">
     @foreach (var pie in Model.Pies)
     {
