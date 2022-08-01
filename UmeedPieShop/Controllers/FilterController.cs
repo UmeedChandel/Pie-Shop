@@ -18,28 +18,28 @@ namespace UmeedPieShop.Controllers
         [Authorize]
         public ViewResult FilterUp()
         {
-            var pies = StaticApiData.GetApiData(baseAddress + "Filter/PriceAsc");
+            var pies = StaticApiData.GetApiPieData(baseAddress + "Filter/PriceAsc");
             return View(pies.Result);
         }
 
         [Authorize]
         public ViewResult FilterDown()
         {
-            var pies = StaticApiData.GetApiData(baseAddress + "Filter/PriceDesc");
+            var pies = StaticApiData.GetApiPieData(baseAddress + "Filter/PriceDesc");
             return View(pies.Result);
         }
 
         [Authorize]
         public ViewResult FilterName()
         {
-            var pies = StaticApiData.GetApiData(baseAddress + "Filter/ByName");
+            var pies = StaticApiData.GetApiPieData(baseAddress + "Filter/ByName");
             return View(pies.Result);
         }
 
         [Authorize]
         public ViewResult FilterStock()
         {
-            var pies = StaticApiData.GetApiData(baseAddress + "Filter/ByStock");
+            var pies = StaticApiData.GetApiPieData(baseAddress + "Filter/ByStock");
             return View(pies.Result);
         }
     }

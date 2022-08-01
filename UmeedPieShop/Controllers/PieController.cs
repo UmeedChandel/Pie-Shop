@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using UmeedPieShop.Models;
 using UmeedPieShop.ViewModel;
-using Newtonsoft.Json;
 
 namespace UmeedPieShop.Controllers
 {
@@ -21,7 +20,7 @@ namespace UmeedPieShop.Controllers
 
         private IEnumerable<Pie> GetAllPies()
         {
-            var pies = StaticApiData.GetApiData(baseAddress + "Pie/AllPiesList");
+            var pies = StaticApiData.GetApiPieData(baseAddress + "Pie/AllPiesList");
             return pies.Result;
         }
 
@@ -56,7 +55,7 @@ namespace UmeedPieShop.Controllers
 
         public IActionResult PieOfWeek()
         {
-            var piesOfWeek = StaticApiData.GetApiData(baseAddress + "Pie/PieOfWeek");
+            var piesOfWeek = StaticApiData.GetApiPieData(baseAddress + "Pie/PieOfWeek");
             return View(piesOfWeek.Result);
         }
 
@@ -71,7 +70,7 @@ namespace UmeedPieShop.Controllers
         // CRUD Operations
 
         [Authorize]
-        public ViewResult Edit(int id)
+        public ViewResult EditPie(int id)
         {
             var pie = GetAllPies().FirstOrDefault(p => p.PieId == id);
             return View(pie);
@@ -90,7 +89,7 @@ namespace UmeedPieShop.Controllers
         }
 
         [Authorize]
-        public ViewResult Create()
+        public ViewResult CreatePie()
         {
             return View();
         }

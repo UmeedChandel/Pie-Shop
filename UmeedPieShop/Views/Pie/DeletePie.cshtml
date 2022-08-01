@@ -65,8 +65,13 @@
     
     <form asp-action="Delete" asp-route-id="@Model.PieId" method="post">
         <input type="hidden" asp-for="PieId" />
-        <input type="submit" value="Delete" class="btn btn-danger" />
+        <input type="submit" value="Delete" class="btn buttonn btn-danger" />
         <br>
-        <a asp-action="List">Back to List</a>
+        <div>
+            <p class="button">
+                <a class="btn buttonn btn-danger" asp-action="CategoryList">Back to List</a>
+            </p>
+        </div>
+
     </form>
 </div>

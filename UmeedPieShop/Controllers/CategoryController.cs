@@ -17,23 +17,9 @@ namespace UmeedPieShop.Controllers
 
         // API connectivity for Category
 
-        public static async Task<IEnumerable<Category>> GetApiCategoryData(string ApiAddress)
-        {
-            IEnumerable<Category> category = new List<Category>();
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.GetAsync(ApiAddress))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    category = JsonConvert.DeserializeObject<IEnumerable<Category>>(apiResponse);
-                }
-            }
-            return category;
-        }
-
         private IEnumerable<Category> AllCategories()
         {
-            var Category = GetApiCategoryData(baseAddress + "Category/AllCategories");
+            var Category = StaticApiData.GetApiCategoryData(baseAddress + "Category/AllCategories");
             return Category.Result;
         }
         public IActionResult CategoryList()
