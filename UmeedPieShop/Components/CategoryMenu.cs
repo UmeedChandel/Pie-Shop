@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using UmeedPieShop.Models;
 
 namespace UmeedPieShop.Components
@@ -15,10 +16,15 @@ namespace UmeedPieShop.Components
             _configuration = configuration;
             baseAddress = configuration.GetValue<string>("BaseAddress");
         }
-        public IViewComponentResult Invoke() // <<=== Equivalent to Action Method
+        /*public IViewComponentResult Invoke() // <<=== Equivalent to Action Method
         {
-            //var category = StaticApiData1.GetApiData(baseAddress + "Pie/AllCategories");
             return View(categoryRepository.AllCategories);
+        }*/
+
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            var category = StaticApiData.GetApiCategoryData(baseAddress + "Category/AllCategories");
+            return View(category.Result);
         }
     }
 
