@@ -7,21 +7,15 @@ namespace UmeedPieShop.Components
     // component -> repository -> appdbcontext -> EFcore -> database
     public class CategoryMenu : ViewComponent // <<=== Equivalent to Controller
     {
-        private readonly ICategoryRepository categoryRepository;
         private readonly IConfiguration _configuration;
         string baseAddress;
-        public CategoryMenu(ICategoryRepository categoryRepository, IConfiguration configuration)
+        public CategoryMenu(IConfiguration configuration)
         {
-            this.categoryRepository = categoryRepository;
             _configuration = configuration;
             baseAddress = configuration.GetValue<string>("BaseAddress");
         }
-        /*public IViewComponentResult Invoke() // <<=== Equivalent to Action Method
-        {
-            return View(categoryRepository.AllCategories);
-        }*/
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync() //<<=== Equivalent to Action Method
         {
             var category = StaticApiData.GetApiCategoryData(baseAddress + "Category/AllCategories");
             return View(category.Result);
