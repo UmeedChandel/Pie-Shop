@@ -40,7 +40,7 @@ namespace PieShopAPI.Controllers
             try
             {
                 var insertedPie = _pieRepository.InsertPie(pie);
-                return CreatedAtRoute("PieById", new { id = insertedPie.PieId }, insertedPie);
+                return Ok(insertedPie);
 
             }
             catch (Exception)
@@ -56,7 +56,7 @@ namespace PieShopAPI.Controllers
             try
             {
                 var updatedPie = _pieRepository.UpdatePie(pie);
-                return CreatedAtRoute("PieById", new { id = updatedPie.PieId }, updatedPie);
+                return Ok(updatedPie);
             }
             catch (Exception)
             {

@@ -57,8 +57,7 @@ namespace PieShopAPI.Controllers
             try
             {
                 var insertedCategory = _categoryRepository.InsertCategory(category);
-                return CreatedAtRoute("CategoryById", new { id = insertedCategory.CategoryId }, insertedCategory);
-                //Ok(insertedCategory);
+                return Ok(insertedCategory);
 
             }
             catch (Exception)
@@ -74,8 +73,7 @@ namespace PieShopAPI.Controllers
             try
             {
                 var updatedCategory = _categoryRepository.UpdateCategory(category);
-                return CreatedAtRoute("CategoryById", new { id = updatedCategory.CategoryId }, updatedCategory);
-                //Ok(updatedCategory);
+                return Ok(updatedCategory);
             }
             catch (Exception)
             {
