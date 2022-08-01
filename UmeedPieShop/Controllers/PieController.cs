@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using UmeedPieShop.Models;
 using UmeedPieShop.ViewModel;
 
@@ -69,9 +70,21 @@ namespace UmeedPieShop.Controllers
 
         // CRUD Operations
 
+        public void CategoryItem()
+        {
+            var categories = StaticApiData.GetApiCategoryData(baseAddress + "Category/AllCategories");
+            List<SelectListItem> categoryItems = new List<SelectListItem>();
+            foreach (var category in categories.Result)
+            {
+                categoryItems.Add(new SelectListItem { Text = category.CategoryName, Value = category.CategoryId.ToString() });
+            }
+            ViewBag.categoryItems = categoryItems;
+        }
+
         [Authorize]
         public ViewResult EditPie(int id)
         {
+            CategoryItem();
             var pie = GetAllPies().FirstOrDefault(p => p.PieId == id);
             return View(pie);
         }
@@ -91,6 +104,7 @@ namespace UmeedPieShop.Controllers
         [Authorize]
         public ViewResult CreatePie()
         {
+            CategoryItem();
             return View();
         }
 
