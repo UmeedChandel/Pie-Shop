@@ -14,11 +14,12 @@ namespace UmeedPieShop.Models
         {
             get
             {
-                return _appDbContext.Pies.Include(c => c.Category);
+                return _appDbContext.Pies;
+                //.Include(c => c.Category)
             }
         }
 
-        public IEnumerable<Pie> PiesOfTheWeek => _appDbContext.Pies.Where(pie => pie.IsPieOfTheWeek).Include(c => c.Category);
+        public IEnumerable<Pie> PiesOfTheWeek => _appDbContext.Pies.Where(pie => pie.IsPieOfTheWeek);
 
         public Pie GetPieById(int pieId)
         {
