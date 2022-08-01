@@ -1,0 +1,57 @@
+﻿@model IEnumerable<UmeedPieShop.Models.Category>
+
+@{
+    ViewData["Title"] = "CategoryList";
+}
+
+<h2>CategoryList</h2>
+
+<br>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                <a asp-controller="Pie" asp-action="List" asp-route-id="@item.CategoryId">@Html.DisplayFor(modelItem => item.CategoryName)</a>
+                
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <div>
+                    <p class="button">
+                        <a class="btn buttonn btn-danger" asp-controller="Category" asp-action="EditCategory" asp-route-id="@item.CategoryId">Edit</a>
+                        <a class="btn buttonn btn-danger" asp-controller="Category" asp-action="DeleteCategory" asp-route-id="@item.CategoryId">Delete</a>
+                    </p>
+                 </div>
+                @*<a asp-controller="Filter" asp-action="EditCategory" asp-route-id="@item.CategoryId">Edit</a> |
+                <a asp-controller="Filter" asp-action="DeleteCategory" asp-route-id="@item.CategoryId">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<br>
+<div>
+    <a asp-action="CreateCategory">Create New Category</a>
+</div>
