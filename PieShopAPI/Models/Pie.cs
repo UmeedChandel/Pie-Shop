@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+
 namespace PieShopAPI.Models
 {
     public class Pie
@@ -13,6 +15,8 @@ namespace PieShopAPI.Models
         public bool IsPieOfTheWeek { get; set; }
         public bool InStock { get; set; }
         public int CategoryId { get; set; }
-        //public Category Category { get; set; }
+
+        [ValidateNever]
+        public Category Category { get; set; }
     }
 }
