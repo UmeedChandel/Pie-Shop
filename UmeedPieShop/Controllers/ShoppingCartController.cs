@@ -67,7 +67,7 @@ namespace UmeedPieShop.Controllers
         public RedirectToActionResult Clear()
         {
             _shoppingCart.ClearCart();
-            return RedirectToAction("Cart");
+            return RedirectToAction("List", "Pie", new { area = "" });
         }
     
     }
