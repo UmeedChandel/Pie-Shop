@@ -22,10 +22,18 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IPieRepository, PieRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp)); // <<<=====
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
+// ALL Details about request response session User
+// Caching Services MiddlewareComponent 
+builder.Services.AddHttpContextAccessor(); // <<<=====
+builder.Services.AddSession(); // <<<=====
+
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -37,6 +45,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseSession(); // <<<=====
 
 app.UseRouting();
 

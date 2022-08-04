@@ -49,9 +49,12 @@
                 @Html.DisplayFor(modelItem => item.InStock)
             </td>
             <td>
-                <p class="button">
-                    <a class="btn buttonn btn-danger">Add to cart</a>
-                </p>
+                <div class="addToCart">
+                    <p class="button">
+                        <a class="btn buttonn btn-danger" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-pieId="@item.PieId">Add to cart</a>
+                    </p>
+                </div>
+
             </td>
         </tr>
 }
