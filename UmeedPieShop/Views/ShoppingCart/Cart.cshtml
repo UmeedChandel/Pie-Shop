@@ -1,47 +1,43 @@
-﻿@tagHelperPrefix "custom:"
-
-@model ShoppingCartViewModel
+﻿@model ShoppingCartViewModel
 
 <h2>Your shopping cart</h2>
-<h4>Here are the delicious pies in your shopping cart.</h4>
-<table class="table table-bordered table-striped">
+<h5>Here are the delicious pies in your shopping cart.</h5>
+<br>
+<table class="table table-striped table-dark">
     <thead>
-    <tr>
-        <th>Selected amount</th>
-        <th>Pie</th>
-        <th class="text-right">Price</th>
-        <th class="text-right">Subtotal</th>
-    </tr>
+        <tr>
+            <th>Selected amount</th>
+            <th>Remove</th>
+            <th>Pie</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+        </tr>
     </thead>
     <tbody>
     @foreach (var line in Model.ShoppingCart.CartItems)
     {
         <tr>
-            <td class="text-center">@line.Amount</td>
-            <td class="text-left">@line.Pie.Name</td>
-            <td class="text-right">@line.Pie.Price.ToString("c")</td>
-            <td class="text-right">
+            <td class="text-center" >@line.Amount</td>
+            <td> 
+                <a class="btn btn-danger" asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-pieId="@line.Pie.PieId">Remove</a>
+            </td>
+            <td>@line.Pie.Name</td>
+            <td>@line.Pie.Price.ToString("c")</td>
+            <td>
                 @((line.Amount * line.Pie.Price).ToString("c"))
             </td>
         </tr>
     }
     </tbody>
-    <tfoot>
-    <tr>
-        <td colspan="3" class="text-right">Total:</td>
-        <td class="text-right">
-            @Model.ShoppingCartTotal.ToString("c")
-        </td>
-    </tr>
-    </tfoot>
 </table>
 
-@*<div progress-value="33">
-    </div>*@
-
-<custom:div progress-value="33">
-    </custom:div>
+<br>
+<div class="text-center">
+    <h4> Total Amount: @Model.ShoppingCartTotal.ToString("c") </h4>
+</div>
+<br>
 
 <div class="text-center">
-    <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Check out now!</a>
+    <a class="btn buttonn btn-secondary" asp-controller="Order" asp-action="Checkout">Check out now!</a>
+    <a class="btn buttonn btn-secondary" asp-controller="ShoppingCart" asp-action="Clear">Clear Cart</a>
 </div>

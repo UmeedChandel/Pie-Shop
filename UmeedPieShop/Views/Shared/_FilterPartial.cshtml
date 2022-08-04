@@ -39,8 +39,7 @@
             <td>
                 <a asp-controller="Pie" asp-action="Details" asp-route-id="@item.PieId" >
                     <img src="@item.ImageThumbnailUrl" class="sstyle rounded" width=50%>
-                </a>
-                
+                </a>   
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IsPieOfTheWeek)
@@ -54,7 +53,6 @@
                         <a class="btn buttonn btn-danger" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-pieId="@item.PieId">Add to cart</a>
                     </p>
                 </div>
-
             </td>
         </tr>
 }

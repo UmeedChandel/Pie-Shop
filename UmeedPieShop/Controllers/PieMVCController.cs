@@ -7,22 +7,26 @@ using UmeedPieShop.ViewModel;
 
 namespace UmeedPieShop.Controllers
 {
-    public class PieController : Controller
+    public class PieMVCController : Controller
     {
         private readonly IMapper _mapper;
         private readonly IConfiguration _configuration;
+        private readonly IPieRepository _pieRepository;
+        private readonly ICategoryRepository _categoryRepository;
         string baseAddress;
-        public PieController(IMapper mapper, IConfiguration configuration)
+        public PieMVCController(IMapper mapper, IConfiguration configuration, IPieRepository pieRepository, ICategoryRepository categoryRepository)
         {
             _mapper = mapper;
             _configuration = configuration;
             baseAddress = configuration.GetValue<string>("BaseAddress");
+            _pieRepository = pieRepository;
+            _categoryRepository = categoryRepository;
         }
 
         private IEnumerable<Pie> GetAllPies()
         {
-            var pies = StaticApiData.GetApiPieData(baseAddress + "Pie/AllPiesList");
-            return pies.Result;
+            var pies = _pieRepository.AllPies;
+            return pies;
         }
 
         public IActionResult List(int id)
@@ -56,8 +60,8 @@ namespace UmeedPieShop.Controllers
 
         public IActionResult PieOfWeek()
         {
-            var piesOfWeek = StaticApiData.GetApiPieData(baseAddress + "Pie/PieOfWeek");
-            return View(piesOfWeek.Result);
+            var piesOfWeek = _pieRepository.PiesOfTheWeek;
+            return View(piesOfWeek);
         }
 
         
@@ -72,13 +76,27 @@ namespace UmeedPieShop.Controllers
 
         public void CategoryItem()
         {
-            var categories = StaticApiData.GetApiCategoryData(baseAddress + "Category/AllCategories");
+            var categories = _categoryRepository.AllCategories;
             List<SelectListItem> categoryItems = new List<SelectListItem>();
-            foreach (var category in categories.Result)
+            foreach (var category in categories)
             {
                 categoryItems.Add(new SelectListItem { Text = category.CategoryName, Value = category.CategoryId.ToString() });
             }
             ViewBag.categoryItems = categoryItems;
+        }
+        
+        [Authorize]
+        public ViewResult CreatePie()
+        {
+            CategoryItem();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Insert(Pie pie)
+        {
+            _pieRepository.InsertPie(pie);
+            return RedirectToAction("List");
         }
 
         [Authorize]
@@ -89,34 +107,10 @@ namespace UmeedPieShop.Controllers
             return View(pie);
         }
 
-        public async Task<IActionResult> Update(Pie pie) //PutAsync
+        [HttpPut]
+        public IActionResult Update(Pie pie)
         {
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.PutAsJsonAsync(baseAddress + "Crud/Update", pie))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                }
-            }
-            return RedirectToAction("List");
-        }
-
-        [Authorize]
-        public ViewResult CreatePie()
-        {
-            CategoryItem();
-            return View();
-        }
-
-        public async Task<IActionResult> Insert(Pie pie) //PostAsync
-        {
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.PostAsJsonAsync(baseAddress + "Crud/Insert", pie))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                }
-            }
+            _pieRepository.UpdatePie(pie);
             return RedirectToAction("List");
         }
 
@@ -127,17 +121,13 @@ namespace UmeedPieShop.Controllers
             return View(pie);
         }
 
-        public async Task<IActionResult> Delete(int PieId)
+        [HttpDelete]
+        public IActionResult Delete(int PieId)
         {
-            using (var httpClient = new HttpClient())
-            {
-                using (var response = await httpClient.DeleteAsync(baseAddress + "Crud/Delete?PieId=" + PieId))
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                }
-            }
-
+            var pie = _pieRepository.AllPies.FirstOrDefault(a => a.PieId == PieId);
+            var deletePie = _pieRepository.DeletePie(PieId);
             return RedirectToAction("List");
         }
+
     }
 }

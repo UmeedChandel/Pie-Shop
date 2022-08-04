@@ -7,12 +7,25 @@ namespace UmeedPieShop.Controllers
     public class ShoppingCartController : Controller
     {
         private readonly IPieRepository _pieRepository;
+        private readonly IConfiguration _configuration;
         private readonly ShoppingCart _shoppingCart;
+        string baseAddress;
 
-        public ShoppingCartController(IPieRepository pieRepository, ShoppingCart shoppingCart)
+        public ShoppingCartController(ShoppingCart shoppingCart, IConfiguration configuration, IPieRepository pieRepository)
         {
             _pieRepository = pieRepository;
             _shoppingCart = shoppingCart;
+            _configuration = configuration;
+            baseAddress = configuration.GetValue<string>("BaseAddress");
+            
+        }
+
+        private IEnumerable<Pie> GetAllPies()
+        {
+            var pies = _pieRepository.AllPies;
+            //StaticApiData.GetApiPieData(baseAddress + "Pie/AllPiesList");
+            return pies;
+                //.Result;
         }
 
         public ViewResult Cart()
@@ -31,7 +44,7 @@ namespace UmeedPieShop.Controllers
 
         public RedirectToActionResult AddToShoppingCart(int pieId)
         {
-            var selectedPie = _pieRepository.AllPies.FirstOrDefault(p => p.PieId == pieId);
+            var selectedPie = GetAllPies().FirstOrDefault(p => p.PieId == pieId);
 
             if (selectedPie != null)
             {
@@ -42,7 +55,7 @@ namespace UmeedPieShop.Controllers
 
         public RedirectToActionResult RemoveFromShoppingCart(int pieId)
         {
-            var selectedPie = _pieRepository.AllPies.FirstOrDefault(p => p.PieId == pieId);
+            var selectedPie = GetAllPies().FirstOrDefault(p => p.PieId == pieId);
 
             if (selectedPie != null)
             {
@@ -50,5 +63,12 @@ namespace UmeedPieShop.Controllers
             }
             return RedirectToAction("Cart");
         }
+
+        public RedirectToActionResult Clear()
+        {
+            _shoppingCart.ClearCart();
+            return RedirectToAction("Cart");
+        }
+    
     }
 }
