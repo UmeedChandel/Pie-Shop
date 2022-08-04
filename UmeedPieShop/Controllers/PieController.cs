@@ -10,13 +10,15 @@ namespace UmeedPieShop.Controllers
     public class PieController : Controller
     {
         private readonly IMapper _mapper;
+        private readonly IHttpContextAccessor httpContextAccessor;
         private readonly IConfiguration _configuration;
         string baseAddress;
-        public PieController(IMapper mapper, IConfiguration configuration)
+        public PieController(IMapper mapper, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
         {
             _mapper = mapper;
             _configuration = configuration;
             baseAddress = configuration.GetValue<string>("BaseAddress");
+            this.httpContextAccessor = httpContextAccessor;
         }
 
         private IEnumerable<Pie> GetAllPies()
@@ -69,6 +71,11 @@ namespace UmeedPieShop.Controllers
 
 
         // CRUD Operations
+
+        /*public ViewResult AuthRequire()
+        {
+            return View();
+        }*/
 
         public void CategoryItem()
         {

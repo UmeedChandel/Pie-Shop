@@ -7,11 +7,13 @@ namespace UmeedPieShop.Controllers
     public class CategoryController : Controller
     {
         private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor httpContextAccessor;
         string baseAddress;
-        public CategoryController(IConfiguration configuration)
+        public CategoryController(IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
         {
             _configuration = configuration;
             baseAddress = configuration.GetValue<string>("BaseAddress");
+            this.httpContextAccessor = httpContextAccessor;
         }
 
         // API connectivity for Category
@@ -27,6 +29,20 @@ namespace UmeedPieShop.Controllers
         }
 
         // CRUD Operations
+
+        /*public RedirectToActionResult Crud()
+        {
+            var user = httpContextAccessor.HttpContext.User.Identity.Name;
+            if (user == "manager@gmail.com")
+            {
+                return RedirectToAction("EditCategory");
+            }
+            return RedirectToAction("AuthRequire");
+        }
+        public ViewResult AuthRequire()
+        {
+            return View();
+        }*/
 
         [Authorize]
         public ViewResult EditCategory(int id)
