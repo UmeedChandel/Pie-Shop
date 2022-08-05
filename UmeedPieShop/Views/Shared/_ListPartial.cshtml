@@ -8,10 +8,14 @@
 <h1 class="display-5">@Model.CurrentCategory</h1>
 <hr/>
 
-<p>
-    @Model.CategoryDescription
-    Create New Pie(s): <a asp-controller="Pie" asp-action="CreatePie">click here</a> 
-</p>
+@if(Context.Session.GetString("manager")=="1")
+{
+    <p>
+        @Model.CategoryDescription
+        Create New Pie(s): <a asp-controller="Pie" asp-action="CreatePie">click here</a> 
+    </p>
+}
+
 <br>
 
 <div class="row">

@@ -7,13 +7,12 @@ namespace UmeedPieShop.Controllers
     public class CategoryController : Controller
     {
         private readonly IConfiguration _configuration;
-        private readonly IHttpContextAccessor httpContextAccessor;
         string baseAddress;
-        public CategoryController(IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
+        public CategoryController(IConfiguration configuration)
         {
             _configuration = configuration;
             baseAddress = configuration.GetValue<string>("BaseAddress");
-            this.httpContextAccessor = httpContextAccessor;
+            
         }
 
         // API connectivity for Category

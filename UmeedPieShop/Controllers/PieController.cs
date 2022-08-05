@@ -10,15 +10,14 @@ namespace UmeedPieShop.Controllers
     public class PieController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly IHttpContextAccessor httpContextAccessor;
         private readonly IConfiguration _configuration;
         string baseAddress;
-        public PieController(IMapper mapper, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
+        public PieController(IMapper mapper, IConfiguration configuration)
         {
             _mapper = mapper;
             _configuration = configuration;
             baseAddress = configuration.GetValue<string>("BaseAddress");
-            this.httpContextAccessor = httpContextAccessor;
+            
         }
 
         private IEnumerable<Pie> GetAllPies()
@@ -34,8 +33,8 @@ namespace UmeedPieShop.Controllers
             if (id > 0)
             {
                 pies = GetAllPies().Where(pie => pie.CategoryId == id);
-                customeClass.CurrentCategory = "Category";
-                customeClass.CategoryDescription = "";
+                customeClass.CurrentCategory = pies.FirstOrDefault().Category.CategoryName;
+                customeClass.CategoryDescription = pies.FirstOrDefault().Category.Description;
             }
             else
             {

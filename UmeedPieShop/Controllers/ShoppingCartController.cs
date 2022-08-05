@@ -17,7 +17,6 @@ namespace UmeedPieShop.Controllers
             _shoppingCart = shoppingCart;
             _configuration = configuration;
             baseAddress = configuration.GetValue<string>("BaseAddress");
-            
         }
 
         private IEnumerable<Pie> GetAllPies()

@@ -19,9 +19,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
-            <th>
-                Action
-            </th>
+            @if(Context.Session.GetString("manager")=="1")
+            {
+                <th>
+                    Action
+                </th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -38,18 +41,25 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                <div>
-                    <p class="button">
-                        <a class="btn buttonn btn-danger" asp-controller="Category" asp-action="EditCategory" asp-route-id="@item.CategoryId">Edit</a>
-                        <a class="btn buttonn btn-danger" asp-controller="Category" asp-action="DeleteCategory" asp-route-id="@item.CategoryId">Delete</a>
-                    </p>
-                 </div>
+                @if(Context.Session.GetString("manager")=="1")
+                {       
+                    <div>
+                        <p class="button">
+                            <a class="btn buttonn btn-danger" asp-controller="Category" asp-action="EditCategory" asp-route-id="@item.CategoryId">Edit</a>
+                            <a class="btn buttonn btn-danger" asp-controller="Category" asp-action="DeleteCategory" asp-route-id="@item.CategoryId">Delete</a>
+                        </p>
+                    </div>
+                }                
             </td>
         </tr>
 }
     </tbody>
 </table>
 <br>
-<div>
-    <a asp-action="CreateCategory">Create New Category</a>
-</div>
+
+@if(Context.Session.GetString("manager")=="1")
+{
+    <div>
+        <a asp-action="CreateCategory">Create New Category</a>
+    </div>
+}

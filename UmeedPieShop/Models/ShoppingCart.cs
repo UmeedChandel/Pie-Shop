@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
 
 namespace UmeedPieShop.Models
 {
@@ -25,7 +26,14 @@ namespace UmeedPieShop.Models
             // check alredy existing guid or not if not create new guid
 
             var userContext = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.User;
-            var user = userContext.FindFirst(ClaimTypes.Name);
+          
+            var user = userContext.Identity.Name;
+
+            session.SetString("manager", "0");
+            if (user == "manager@gmail.com")
+            {
+                session.SetString("manager", "1");
+            }
 
             session.SetString("CartId", cartId);
             // assign it to that session 

@@ -14,7 +14,7 @@ namespace PieShopAPI.Models
         {
             get
             {
-                return _appDbContext.Pies;
+                return _appDbContext.Pies.Include(c =>c.Category);
             }
         }
 
