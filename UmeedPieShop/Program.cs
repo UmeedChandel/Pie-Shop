@@ -22,6 +22,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IPieRepository, PieRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp)); // <<<===== classname.staticmethod()
 // one bag for one user for whichever page they visit
 
