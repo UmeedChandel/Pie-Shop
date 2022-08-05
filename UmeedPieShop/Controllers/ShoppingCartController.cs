@@ -64,10 +64,21 @@ namespace UmeedPieShop.Controllers
             return RedirectToAction("Cart");
         }
 
+        public RedirectToActionResult RemoveAtOnceCart(int pieId)
+        {
+            var selectedPie = GetAllPies().FirstOrDefault(p => p.PieId == pieId);
+
+            if (selectedPie != null)
+            {
+                _shoppingCart.RemoveAtOnce(selectedPie);
+            }
+            return RedirectToAction("Cart");
+        }
+
         public RedirectToActionResult Clear()
         {
             _shoppingCart.ClearCart();
-            return RedirectToAction("List", "Pie", new { area = "" });
+            return RedirectToAction("Cart");
         }
     
     }

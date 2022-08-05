@@ -72,11 +72,6 @@ namespace UmeedPieShop.Controllers
 
         // CRUD Operations
 
-        /*public ViewResult AuthRequire()
-        {
-            return View();
-        }*/
-
         public void CategoryItem()
         {
             var categories = StaticApiData.GetApiCategoryData(baseAddress + "Category/AllCategories");

@@ -6,16 +6,21 @@
 <table class="table">
     <thead>
         <tr>
-            <th class="text-center">Selected amount</th>
+            <th class="text-center">Delete Item</th>
             <th>Pie</th>
             <th>Price</th>
-            <th>Subtotal</th>
+            <th class="text-center">Selected Amount</th>
+            <th>SubTotal</th>
         </tr>
     </thead>
     <tbody>
     @foreach (var line in Model.ShoppingCart.CartItems)
     {
         <tr>
+            <td class="text-center"><a class="btn btn-danger" asp-controller="ShoppingCart" asp-action="RemoveAtOnceCart" asp-route-pieId="@line.Pie.PieId">Remove</a></td>
+            <td>@line.Pie.Name</td>
+            @*<a asp-controller="Pie" asp-action="Detail" asp-route-id="@line.Pie.PieId">*@
+            <td>@line.Pie.Price.ToString("c")</td>
             <td class="text-center">
                 <h4>
                 <a asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-pieId="@line.Pie.PieId"> + </a>
@@ -23,8 +28,6 @@
                 <a asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-pieId="@line.Pie.PieId"> - </a>
                 </h4>
             </td>
-            <td>@line.Pie.Name</td>
-            <td>@line.Pie.Price.ToString("c")</td>
             <td>
                 @((line.Amount * line.Pie.Price).ToString("c"))
             </td>
@@ -40,6 +43,7 @@
 <br>
 
 <div class="text-center">
+    <a class="btn buttonn btn-secondary" asp-controller="Pie" asp-action="ListMini">Back To List</a>
     <a class="btn buttonn btn-secondary" asp-controller="Order" asp-action="Checkout">Check out now!</a>
     <a class="btn buttonn btn-secondary" asp-controller="ShoppingCart" asp-action="Clear">Clear Cart</a>
 </div>

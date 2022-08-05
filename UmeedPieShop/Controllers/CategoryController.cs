@@ -30,20 +30,6 @@ namespace UmeedPieShop.Controllers
 
         // CRUD Operations
 
-        /*public RedirectToActionResult Crud()
-        {
-            var user = httpContextAccessor.HttpContext.User.Identity.Name;
-            if (user == "manager@gmail.com")
-            {
-                return RedirectToAction("EditCategory");
-            }
-            return RedirectToAction("AuthRequire");
-        }
-        public ViewResult AuthRequire()
-        {
-            return View();
-        }*/
-
         [Authorize]
         public ViewResult EditCategory(int id)
         {

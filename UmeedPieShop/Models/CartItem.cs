@@ -8,6 +8,6 @@ namespace UmeedPieShop.Models
         public int CartItemId { get; set; }
         public Pie Pie { get; set; }
         public int Amount { get; set; }
-        public string CartId { get; set; } //user specific
+        public string CartId { get; set; } // session specific
     }
 }
