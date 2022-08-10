@@ -112,7 +112,8 @@ namespace UmeedPieShop.Models
 
         public decimal GetCartTotal()
         {
-            return _appDbContext.CartItems.Where(c => c.CartId == CartId).Select(c => c.Pie.Price * c.Amount).Sum();
+            var total = _appDbContext.CartItems.Where(c => c.CartId == CartId).Select(c => c.Pie.Price * c.Amount).Sum();
+            return Math.Round(total,2);
         }
     }
 }

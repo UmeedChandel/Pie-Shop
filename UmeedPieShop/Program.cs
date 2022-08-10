@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using UmeedPieShop.Models;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args); 
 
 string connString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -23,9 +23,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<IPieRepository, PieRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp)); // <<<===== classname.staticmethod()
+builder.Services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
 // one bag for one user for whichever page they visit
-
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
